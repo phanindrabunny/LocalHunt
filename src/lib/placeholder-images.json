@@ -1,0 +1,70 @@
+{
+  "placeholderImages": [
+    {
+      "id": "vendor-1",
+      "description": "A classic American diner storefront with a neon sign.",
+      "imageUrl": "https://picsum.photos/seed/1/400/200",
+      "imageHint": "diner storefront"
+    },
+    {
+      "id": "vendor-2",
+      "description": "The cozy interior of a coffee shop with wooden tables.",
+      "imageUrl": "https://picsum.photos/seed/2/400/200",
+      "imageHint": "coffee shop"
+    },
+    {
+      "id": "vendor-3",
+      "description": "Exterior of a bookstore with books displayed in the window.",
+      "imageUrl": "https://picsum.photos/seed/3/400/200",
+      "imageHint": "bookstore exterior"
+    },
+    {
+      "id": "vendor-4",
+      "description": "A clean and organized auto repair garage.",
+      "imageUrl": "https://picsum.photos/seed/4/400/200",
+      "imageHint": "auto garage"
+    },
+    {
+      "id": "vendor-5",
+      "description": "A happy dog being groomed at a pet salon.",
+      "imageUrl": "https://picsum.photos/seed/5/400/200",
+      "imageHint": "dog grooming"
+    },
+    {
+      "id": "vendor-6",
+      "description": "A colorful display of flowers in a florist shop.",
+      "imageUrl": "https://picsum.photos/seed/6/400/200",
+      "imageHint": "florist shop"
+    },
+    {
+      "id": "vendor-7",
+      "description": "Fresh produce aisles in a local grocery store.",
+      "imageUrl": "https://picsum.photos/seed/7/400/200",
+      "imageHint": "grocery produce"
+    },
+    {
+      "id": "vendor-8",
+      "description": "A rack of stylish clothes in a fashion boutique.",
+      "imageUrl": "https://picsum.photos/seed/8/400/200",
+      "imageHint": "clothing boutique"
+    },
+    {
+      "id": "vendor-9",
+      "description": "The interior of a modern and chic hair salon.",
+      "imageUrl": "https://picsum.photos/seed/9/400/200",
+      "imageHint": "hair salon"
+    },
+    {
+      "id": "vendor-10",
+      "description": "Aisles filled with tools and supplies in a hardware store.",
+      "imageUrl": "https://picsum.photos/seed/10/400/200",
+      "imageHint": "hardware store"
+    },
+    {
+      "id": "vendor-11",
+      "description": "A sourdough bread bowl sandwich on a table.",
+      "imageUrl": "https://picsum.photos/seed/11/400/200",
+      "imageHint": "sourdough sandwich"
+    }
+  ]
+}

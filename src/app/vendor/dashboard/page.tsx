@@ -100,119 +100,41 @@ function VendorDashboardPage() {
   }
 
   return (
-    <div className="flex flex-col min-h-screen bg-background">
-       <header className="sticky top-0 z-50 w-full border-b bg-card shadow-sm">
-        <div className="container mx-auto flex h-16 items-center px-4">
-          <Link href="/vendor/dashboard" className="flex items-center gap-2">
-            <span className="text-xl font-bold font-headline text-foreground">
-              Vendor Dashboard
-            </span>
-          </Link>
-          <div className="ml-auto flex items-center gap-4">
-            <Button asChild>
-              <Link href="/">Logout</Link>
-            </Button>
+    <RoleBasedLayout allowedRole="vendor">
+      <div className="flex flex-col min-h-screen bg-background">
+         <header className="sticky top-0 z-50 w-full border-b bg-card shadow-sm">
+          <div className="container mx-auto flex h-16 items-center px-4">
+            <Link href="/vendor/dashboard" className="flex items-center gap-2">
+              <span className="text-xl font-bold font-headline text-foreground">
+                Vendor Dashboard
+              </span>
+            </Link>
+            <div className="ml-auto flex items-center gap-4">
+              <Button asChild>
+                <Link href="/">Logout</Link>
+              </Button>
+            </div>
           </div>
-        </div>
-      </header>
-      <main className="flex-1 flex items-center justify-center p-4 sm:p-6 lg:p-8">
-        <Card className="w-full max-w-2xl">
-          <CardHeader>
-            <CardTitle className="text-3xl font-headline">Add Your Business</CardTitle>
-            <CardDescription>
-              Fill out the form below to add your shop to Local Hunt.
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-                <FormField
-                  control={form.control}
-                  name="businessName"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Business Name</FormLabel>
-                      <FormControl>
-                        <Input placeholder="e.g., The Daily Grind Cafe" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="description"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Description</FormLabel>
-                      <FormControl>
-                        <Textarea placeholder="Tell us about your business..." {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="categories"
-                  render={() => (
-                    <FormItem>
-                      <div className="mb-4">
-                        <FormLabel>Categories</FormLabel>
-                        <FormDescription>Select up to 3 categories that best fit your business.</FormDescription>
-                      </div>
-                      <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-                        {CATEGORIES.map((item) => (
-                          <FormField
-                            key={item}
-                            control={form.control}
-                            name="categories"
-                            render={({ field }) => {
-                              return (
-                                <FormItem key={item} className="flex flex-row items-start space-x-3 space-y-0">
-                                  <FormControl>
-                                    <Checkbox
-                                      checked={field.value?.includes(item)}
-                                      onCheckedChange={(checked) => {
-                                        return checked
-                                          ? field.onChange([...field.value, item])
-                                          : field.onChange(field.value?.filter((value) => value !== item));
-                                      }}
-                                    />
-                                  </FormControl>
-                                  <FormLabel className="font-normal">{item}</FormLabel>
-                                </FormItem>
-                              );
-                            }}
-                          />
-                        ))}
-                      </div>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="address"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Address</FormLabel>
-                      <FormControl>
-                        <Input placeholder="123 Main St, Anytown, USA" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+        </header>
+        <main className="flex-1 flex items-center justify-center p-4 sm:p-6 lg:p-8">
+          <Card className="w-full max-w-2xl">
+            <CardHeader>
+              <CardTitle className="text-3xl font-headline">Add Your Business</CardTitle>
+              <CardDescription>
+                Fill out the form below to add your shop to Local Hunt.
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <Form {...form}>
+                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
                   <FormField
                     control={form.control}
-                    name="phone"
+                    name="businessName"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Phone Number</FormLabel>
+                        <FormLabel>Business Name</FormLabel>
                         <FormControl>
-                          <Input placeholder="(555) 123-4567" {...field} />
+                          <Input placeholder="e.g., The Daily Grind Cafe" {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -220,41 +142,121 @@ function VendorDashboardPage() {
                   />
                   <FormField
                     control={form.control}
-                    name="hours"
+                    name="description"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Business Hours</FormLabel>
+                        <FormLabel>Description</FormLabel>
                         <FormControl>
-                          <Input placeholder="Mon-Fri: 9am-5pm" {...field} />
+                          <Textarea placeholder="Tell us about your business..." {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
                     )}
                   />
-                </div>
-                 <FormField
-                  control={form.control}
-                  name="coverPhoto"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Cover Photo</FormLabel>
-                      <FormControl>
-                        <Input type="file" onChange={(e) => field.onChange(e.target.files ? e.target.files[0] : null)} />
-                      </FormControl>
-                       <FormDescription>Upload a picture that represents your business.</FormDescription>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <div className="flex justify-end">
-                   <Button type="submit" size="lg">Add Business</Button>
-                </div>
-              </form>
-            </Form>
-          </CardContent>
-        </Card>
-      </main>
-    </div>
+                  <FormField
+                    control={form.control}
+                    name="categories"
+                    render={() => (
+                      <FormItem>
+                        <div className="mb-4">
+                          <FormLabel>Categories</FormLabel>
+                          <FormDescription>Select up to 3 categories that best fit your business.</FormDescription>
+                        </div>
+                        <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                          {CATEGORIES.map((item) => (
+                            <FormField
+                              key={item}
+                              control={form.control}
+                              name="categories"
+                              render={({ field }) => {
+                                return (
+                                  <FormItem key={item} className="flex flex-row items-start space-x-3 space-y-0">
+                                    <FormControl>
+                                      <Checkbox
+                                        checked={field.value?.includes(item)}
+                                        onCheckedChange={(checked) => {
+                                          return checked
+                                            ? field.onChange([...field.value, item])
+                                            : field.onChange(field.value?.filter((value) => value !== item));
+                                        }}
+                                      />
+                                    </FormControl>
+                                    <FormLabel className="font-normal">{item}</FormLabel>
+                                  </FormItem>
+                                );
+                              }}
+                            />
+                          ))}
+                        </div>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="address"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Address</FormLabel>
+                        <FormControl>
+                          <Input placeholder="123 Main St, Anytown, USA" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                    <FormField
+                      control={form.control}
+                      name="phone"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Phone Number</FormLabel>
+                          <FormControl>
+                            <Input placeholder="(555) 123-4567" {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name="hours"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Business Hours</FormLabel>
+                          <FormControl>
+                            <Input placeholder="Mon-Fri: 9am-5pm" {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+                   <FormField
+                    control={form.control}
+                    name="coverPhoto"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Cover Photo</FormLabel>
+                        <FormControl>
+                          <Input type="file" onChange={(e) => field.onChange(e.target.files ? e.target.files[0] : null)} />
+                        </FormControl>
+                         <FormDescription>Upload a picture that represents your business.</FormDescription>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <div className="flex justify-end">
+                     <Button type="submit" size="lg">Add Business</Button>
+                  </div>
+                </form>
+              </Form>
+            </CardContent>
+          </Card>
+        </main>
+      </div>
+    </RoleBasedLayout>
   );
 }
 

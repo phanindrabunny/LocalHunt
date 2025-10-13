@@ -29,6 +29,9 @@ const formSchema = z
     businessName: z.string().min(2, {
       message: 'Business name must be at least 2 characters.',
     }),
+    email: z.string().email({
+      message: 'Please enter a valid email address.',
+    }),
     description: z.string().min(10, {
       message: 'Description must be at least 10 characters.',
     }),
@@ -53,6 +56,7 @@ export default function RegisterVendorPage() {
     resolver: zodResolver(formSchema),
     defaultValues: {
       businessName: '',
+      email: '',
       description: '',
       categories: [],
       address: '',
@@ -65,6 +69,7 @@ export default function RegisterVendorPage() {
     try {
       const payload = {
         name: values.businessName,
+        email: values.email,
         description: values.description,
         categories: values.categories,
         address: values.address,
@@ -121,6 +126,20 @@ export default function RegisterVendorPage() {
                       <FormControl>
                         <Input placeholder="e.g., The Daily Grind Cafe" {...field} />
                       </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="email"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Email Address</FormLabel>
+                      <FormControl>
+                        <Input type="email" placeholder="contact@yourbusiness.com" {...field} />
+                      </FormControl>
+                      <FormDescription>Used for account management and customer communications.</FormDescription>
                       <FormMessage />
                     </FormItem>
                   )}

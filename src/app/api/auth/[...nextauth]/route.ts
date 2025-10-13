@@ -12,6 +12,12 @@ interface Credentials {
   password?: string;
 }
 
+// Ensure this route runs on the Node runtime and remains dynamic so NextAuth can
+// safely use server APIs (cookies(), headers(), params) without Next.js
+// emitting sync-dynamic-apis warnings.
+export const runtime = 'nodejs';
+export const dynamic = 'force-dynamic';
+
 const authOptions: NextAuthOptions = {
   adapter: MongoDBAdapter((async () => {
     const { client } = await connectToDatabase();
@@ -24,7 +30,7 @@ const authOptions: NextAuthOptions = {
         email: { label: "Email", type: "email" },
         password: { label: "Password", type: "password" }
       },
-      async authorize(credentials: Credentials): Promise<NextAuthUser | null> {
+      async authorize(credentials: Record<'email' | 'password', string> | undefined): Promise<NextAuthUser | null> {
         if (!credentials?.email || !credentials?.password) return null;
         
         try {
